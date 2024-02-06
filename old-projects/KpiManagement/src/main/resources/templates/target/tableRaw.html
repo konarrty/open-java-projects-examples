@@ -1,0 +1,28 @@
+<html th:fragment="copy">
+<tr name="tr" th:data-id="${report.target.id}" th:each="report : ${targets}">
+    <html th:if="${report.target.curator.equals(curator)}">
+    <div th:replace="~{target/tableRawContent :: copy}"></div>
+    </html>
+    <html th:unless="${report.target.curator.equals(curator)}">
+    <div th:replace="~{target/tableRawContentDisabled :: copy}"></div>
+    </html>
+</tr>
+<tr th:if="${kpi != null}" style="background-color: #dedddd" id="kpi">
+    <td>
+    <td>
+    <td>
+        <!--        <div style="margin-right: 20px;font-weight: bold" th:if="*{!@periodUtils.isBeforeLocaleDate(period)}"-->
+        <div style="margin-right: 20px;font-weight: bold" th:if="*{participationRate != 0}"
+             th:text="${'&#8721;'+participationRate}"></div>
+        <!--        </div>-->
+    </td>
+    <td>
+    <td>
+    <td>
+    <td style="font-weight: bold" th:text="'Kpi: '+${kpi}">
+    <td>
+
+</tr>
+</html>
+
+

@@ -1,0 +1,49 @@
+<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Сотрудники</title>
+    <link rel="stylesheet" href="/assets/css/custom-table.css">
+    <link rel="stylesheet" href="/assets/css/custom-inputs.css">
+</head>
+<body>
+<style>
+    .error {
+        color: #EB5E28;
+    }
+
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src="/js/employee/show.js"></script>
+<script src="/js/init.js"></script>
+<script src="/js/errors.js"></script>
+
+<div sec:authorize="hasRole('ADMIN')">
+    <div th:replace="~{navbarAdmin :: copy}"></div>
+</div>
+<div sec:authorize="hasRole('CURATOR')">
+    <div th:replace="~{navbarСurator :: copy}"></div>
+</div>
+<div th:replace="~{notification :: copy}"></div>
+
+<div class="starter-template">
+    <table class="valid">
+        <thead>
+        <tr>
+            <th>Полное имя</th>
+            <th>Должность</th>
+            <th>Пригласительный код</th>
+            <th>Логин</th>
+            <th>Роль</th>
+            <th>Операции</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <div th:replace="~{employee/tableRaw :: copy}"></div>
+        </tbody>
+    </table>
+    <button class="btn btn-info" style="margin-left: 5px" onclick="cache()">Добавить запись</button>
+    <button class="btn btn-info" onclick="save()" style="margin-left: 5px">Сохранить изменения</button>
+</div>
+</body>
+</html>

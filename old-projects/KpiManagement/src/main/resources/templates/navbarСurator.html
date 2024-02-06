@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body th:fragment="copy">
+
+<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+
+<link href="../bootstrap3/css/bootstrap.css" rel="stylesheet"/>
+<link href="../assets/css/ct-paper.css" rel="stylesheet"/>
+<link href="../assets/css/demo.css" rel="stylesheet"/>
+
+
+<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+<nav class="navbar navbar-ct-info" role="navigation-demo">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="#">Меню</a>
+
+    <div class="collapse navbar-collapse" id="navigation-example-2">
+        <ul class="nav navbar-nav">
+            <a href="/targets/my" class="btn btn-primary btn-simple">Личный кабинет</a>
+            <a href="/privileges/my" class="btn btn-primary btn-simple">Активные права</a>
+            <a href="/targets/kpi" class="btn btn-primary btn-simple">Задачи</a>
+            <a href="/targets/checks" class="btn btn-primary btn-simple">KPI</a>
+
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a href="/license">
+                    <i class="fa fa-user"></i>
+                    Лицензия
+                </a>
+            </li>
+            <li>
+                <a href="/logout">
+                    <i class="fa fa-sign-out"></i>
+                    Выйти
+                </a>
+            </li>
+
+        </ul>
+    </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-->
+</nav>
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+<tr name="tr" th:fragment="copy" th:each="employee : ${employees}">
+    <td><input name="employee" hidden="hidden"></td>
+    <td><input name="fullName"></td>
+    <td><input name="position"></td>
+    <input hidden="hidden" name="user">
+    <td><input disabled></td>
+    <td><select name="user.role">
+        <option th:selected="${employee?.user?.role == role}"
+                th:each="role: ${roles}" th:value="${role}"
+                th:text="${role.name}"></option>
+    </select></td>
+    <td></td>
+    <td>
+        <div style="display:inline-block">
+            <button onclick="deleteEmployee(this)" type="button">Delete
+            </button>
+        </div>
+    </td>
+</tr>

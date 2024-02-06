@@ -1,0 +1,12 @@
+<div th:fragment="copy">
+    <div class="form-group">
+        <label for="actual">Факт</label>
+        <input class="valid" th:value="${mark.actual}" id="actual" name="actual">
+    </div>
+    <div class="form-group">
+        <label for="note">Примечание</label>
+        <textarea th:value="${mark.note}" class="valid" id="note" name="note"></textarea>
+    </div>
+</div>
+
+

@@ -1,0 +1,32 @@
+<html th:fragment="copy" xmlns="http://www.w3.org/1999/html">
+<td hidden="hidden">
+</td>
+<td class="centered" id="plan" th:text="${report?.target?.plan}">
+</td>
+<td class="centered">
+    <div id="actual" th:text="${#objects.nullSafe(report?.target?.mark?.actual, 'Не оценено')}">
+    </div>
+</td>
+<td class="centered" th:text="${report?.target?.weight}">
+</td>
+<td class="centered" style="width: 300px" th:text="${report.target.indicator.name}"></td>
+<td class="centered">
+    <div style="margin-bottom: 5px" th:text="${curator.fullName}"></div>
+</td>
+<td class="centered" hidden="hidden" th:text="${report.target.period}">
+<td class="centered" hidden="hidden" th:text="${report.target.employee?.fullName}">
+<td class="centered" hidden="hidden" id="note" th:text="${report?.target?.mark?.note}">
+<td class="centered" th:text="${report?.executionIndex}">
+<td class="centered" th:text="${report?.weightFactor}">
+<td>
+    <button disabled class="btn btn-danger" type="button">
+        Удалить
+    </button>
+    <button disabled class="btn btn-warning" type="button">
+        Оценить
+    </button>
+
+</td>
+
+
+</html>

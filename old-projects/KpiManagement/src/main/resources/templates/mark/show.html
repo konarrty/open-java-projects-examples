@@ -1,0 +1,48 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Оценки</title>
+</head>
+<body>
+<div class="starter-template">
+    <table>
+        <thead>
+        <tr>
+            <th>Факт</th>
+            <th>Показатель</th>
+            <th>Период</th>
+            <th>Сотрудник</th>
+            <th>Примечание</th>
+            <th>Операции</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="mark: ${marks}">
+            <td th:text="${mark.actual}">
+            <td th:text="${mark.target.indicator.name}">
+            <td th:text="${mark.target.period}">
+            <td th:text="${mark.target.employee.fullName}">
+            <td th:text="${mark.note}">
+            </td>
+            <td>
+                <div style="margin-top: 15px; display:inline-block">
+                    <div style="display:inline-block">
+                        <a th:href="@{edit/{id}(id=${mark.id})}">Edit</a>
+                    </div>
+                    <div style="display:inline-block">
+                        <form action="#" th:action="@{delete/{id}(id=${mark.id})}"
+                              th:method="DELETE">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </div>
+
+                </div>
+            </td>
+
+        </tr>
+        </tbody>
+        <a href="add">Add</a>
+    </table>
+</div>
+</body>
+</html>

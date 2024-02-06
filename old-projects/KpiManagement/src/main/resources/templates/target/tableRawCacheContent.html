@@ -1,0 +1,41 @@
+<html th:fragment="copy">
+<td hidden="hidden"><input hidden="hidden" th:text="${cache?.report?.target?.id}" name="id"
+                           th:value="${cache?.report?.target?.id}">
+</td>
+<td class="centered"><input required class="valid" name="plan" th:value="${cache?.report?.target?.plan}">
+    <div class="text-field__message"></div>
+</td>
+<td class="centered" th:text="${#objects.nullSafe(cache?.report?.target?.mark?.actual, 'Не оценено')}">
+<td class="centered"><input required min="0.01" max="1" step="0.01" class="valid" type="number" name="weight"
+                            th:value="${cache?.report?.target?.weight}">
+    <div class="text-field__message"></div>
+</td>
+<td class="centered">
+    <input style="width: 300px" required th:value="${cache?.report.target.indicator.name}" class="valid" id="indicator"
+           name="indicator">
+</td>
+<td class="centered">
+    <div th:text="${curator.fullName}"></div>
+</td>
+<td hidden="hidden"><input name="period" hidden="hidden" th:text="${cache?.report.target.period}"
+                           th:value="${cache?.report.target.period?.id}"></td>
+<td hidden="hidden"><input name="employee" hidden="hidden" th:text="${cache?.report.target.employee?.fullName}"
+                           th:value="${cache?.report.target.employee?.id}"></td>
+<td class="centered" th:text="${cache?.report?.executionIndex}">
+<td class="centered" th:text="${cache?.report?.weightFactor}">
+<td hidden="hidden"><input disabled id="mark" name="mark"
+                           th:value="${cache?.report?.target?.mark?.id}"></td>
+<td>
+    <button class="btn btn-danger" id="button" th:data-is-cache="${cache.id}" th:data-id="${cache?.report?.target?.id}"
+            onclick="deleteTarget(this)"
+            type="button">Удалить
+    </button>
+    <button class="btn btn-warning" th:data-target-id="${cache?.report?.target?.id}" onclick="markResult(this)"
+            type="button">
+        Оценить
+    </button>
+
+</td>
+
+
+</html>

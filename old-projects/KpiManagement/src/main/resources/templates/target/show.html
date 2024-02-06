@@ -1,0 +1,60 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Задачи</title>
+</head>
+<body>
+<div class="starter-template">
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>План</th>
+            <th>Вес</th>
+            <th>Период</th>
+            <th>Сотрудник</th>
+            <th>Куратор</th>
+            <th>Показатель</th>
+            <th>Операции</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="target: ${targets}">
+            <td th:text="${target.id}"></td>
+            <td th:text="${target.plan}">
+            <td th:text="${target.weight}">
+            <td th:text="${target.period}">
+            <td th:text="${target.employee.fullName}">
+            <td th:text="${target.curator.fullName}">
+            <td th:text="${target.indicator.name}">
+            </td>
+            <td>
+                <div style="margin-top: 15px; display:inline-block">
+                    <div style="display:inline-block">
+                        <a th:href="@{edit/{id}(id=${target.id})}">Edit</a>
+                    </div>
+                    <div style="display:inline-block">
+                        <form action="#" th:action="@{delete/{id}(id=${target.id})}"
+                              th:method="DELETE">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </div>
+                    <div style="display:inline-block">
+                        <form action="#" th:action="@{/marks/add}"
+                              th:method="GET">
+                            <input hidden="hidden" name="target" th:value="${target.id}">
+
+                            <button type="submit">Mark</button>
+                        </form>
+                    </div>
+
+                </div>
+            </td>
+
+        </tr>
+        </tbody>
+        <a href="add">Add</a>
+    </table>
+</div>
+</body>
+</html>

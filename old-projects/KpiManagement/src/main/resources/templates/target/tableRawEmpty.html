@@ -1,0 +1,33 @@
+<table>
+    <tr id="tr" data-is-changed="true" name="tr">
+        <td hidden="hidden"><input hidden="hidden" name="id">
+        </td>
+        <td><input required min="0.1" class="valid" name="plan">
+            <div class="text-field__message"></div>
+        </td>
+        <td></td>
+        <td><input type="number" required min="0.01" max="1" step="0.01"  inputmode="decimal" class="valid" name="weight">
+            <div class="text-field__message"></div>
+        </td>
+        <td>
+            <input style="width: 300px"  required class="valid" id="indicator" name="indicator">
+            <div class="text-field__message"></div>
+
+        </td>
+        <td>
+            <div th:text="${curator.fullName}"></div>
+        </td>
+        <td hidden="hidden"><input name="period" hidden="hidden" th:text="${period}"
+                   th:value="${period.id}"></td>
+        <td hidden="hidden"><input name="employee" hidden="hidden" th:text="${employee.fullName}"
+                   th:value="${employee.id}"></td>
+        <td>
+        <td>
+        <td>
+            <button id="button" class="btn btn-danger" onclick="deleteTarget(this)" type="button">Удалить</button>
+            <button class="btn btn-warning" disabled type="button">
+                Оценить
+            </button>
+        </td>
+    </tr>
+</table>

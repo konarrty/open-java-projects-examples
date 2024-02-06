@@ -1,0 +1,26 @@
+<html th:fragment="copy">
+
+<td style="width: 30%"><input style="font-size: 15px"  id="year" class="valid" required type="number" name="year" min="2000" max="2099" step="1"
+                              value="2023"
+                              th:value="${period.year}">
+    <label class="text-field__message" for="year"></label>
+
+</td>
+
+<td>
+    <select style="font-size: 15px"  class="valid" name="type">
+        <option th:selected="${period.type == t}"
+                th:each="t: ${types}" th:value="${t}"
+                th:text="${t.typeName}"></option>
+    </select>
+    <div class="text-field__message"></div>
+<td>
+
+    <button class="btn btn-danger" th:data-id="${period.id}" onclick="deletePeriod(this)" type="button">Удалить</button>
+</td>
+<td hidden="hidden"><input hidden="hidden" name="period" th:value="${period.id}"></td>
+
+
+</html>
+
+

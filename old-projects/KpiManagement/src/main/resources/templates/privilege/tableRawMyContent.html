@@ -1,0 +1,25 @@
+<html th:fragment="copy">
+<td class="centered">
+    <span
+            th:if="${privilege instanceof T(com.example.kpimanagment.model.PrivilegeWrite)}">На запись</span>
+    <span
+            th:unless="${privilege instanceof T(com.example.kpimanagment.model.PrivilegeWrite)}">На чтение</span>
+</td>
+<td class="centered">
+    <span th:text="${privilege.participationRate}"
+          th:if="${privilege instanceof T(com.example.kpimanagment.model.PrivilegeWrite)}">
+</span>
+    <span th:text="Отсутствует"
+          th:unless="${privilege instanceof T(com.example.kpimanagment.model.PrivilegeWrite)}">
+</span>
+</td>
+<td class="centered">
+    <div th:text="${privilege?.user?.employee?.fullName }"></div>
+</td>
+<td class="centered">
+    <div th:text="${privilege.employee.fullName}"></div>
+</td>
+
+</html>
+
+

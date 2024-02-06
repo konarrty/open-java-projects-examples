@@ -1,0 +1,32 @@
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Мой Kpi</title>
+    <link rel="stylesheet" href="/assets/css/custom-table.css">
+    <link rel="stylesheet" href="/assets/css/custom-inputs.css">
+</head>
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src="/js/cookies.js"></script>
+<div th:replace="~{navbarСurator :: copy}"></div>
+<div class="starter-template">
+    <div th:replace="~{notification :: copy}"></div>
+    <table>
+        <thead>
+        <tr>
+            <th>Тип</th>
+            <th>Вес</th>
+            <th>Куратор</th>
+            <th>Сотрудник</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <div th:replace="~{privilege/tableRaw :: copy}"></div>
+
+        </tbody>
+
+    </table>
+</div>
+</body>
+</html>

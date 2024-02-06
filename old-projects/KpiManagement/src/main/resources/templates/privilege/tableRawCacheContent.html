@@ -1,0 +1,44 @@
+<html th:fragment="copy">
+<td hidden="hidden"><input th:text="${cache.privilege.id}" name="id" hidden="hidden" th:value="${cache.privilege.id}">
+</td>
+<td>
+    <select name="user">
+        <option
+                th:selected="${cache?.privilege?.user?.employee?.id == cur.id}"
+                th:hidden="${cache?.privilege?.employee?.id  == cur.id}"
+                th:each="cur: ${employees}" th:value="${cur.user.id}"
+                th:text="${cur.fullName}"></option>
+    </select>
+    <div class="text-field__message"></div>
+</td>
+<!--<td>-->
+<!--    <select required class="valid" id="fromDate" name="fromDate">-->
+<!--        <option selected disabled> Выберите период</option>-->
+<!--        <option th:selected="${per.id == cache.privilege.fromDate.id}"-->
+<!--                th:each="per: ${periods}" th:value="${per.id}"-->
+<!--                th:text="${per}"></option>-->
+<!--    </select>-->
+<!--    <div class="text-field__message"></div>-->
+
+</td>
+<td class="centered">
+
+    <input th:text="${cache.privilege.employee.fullName}" name="employee" hidden="hidden"
+           th:value="${cache.privilege.employee.id}">
+</td>
+
+<td><input required min="0.01" max="1" step="0.01" class="valid" type="number" name="participationRate"
+           th:value="${cache.privilege.participationRate}">
+    <div class="text-field__message"></div>
+</td>
+
+<td>
+    <button class="btn btn-danger" id="button" th:data-is-cache="${cache.id}" th:data-id="${cache.privilege.id}"
+            onclick="deletePrivilege(this)"
+            type="button">Удалить
+    </button>
+
+</td>
+</html>
+
+

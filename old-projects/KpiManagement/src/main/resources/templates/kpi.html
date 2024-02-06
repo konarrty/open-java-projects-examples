@@ -1,0 +1,148 @@
+<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>Задачи</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+</head>
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<style>
+
+    li.ui-menu-item {
+        font-size: 16px;
+        font-faminy: Verdana;
+    }
+
+    .form-group {
+        margin-bottom: 1rem;
+        margin-left: 1rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+
+    input, textarea {
+        width: 90%;
+        padding: 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+</style>
+
+<link rel="stylesheet" href="/assets/css/custom-table.css">
+<link rel="stylesheet" href="/assets/css/custom-inputs.css">
+<script src="/js/target/show.js"></script>
+<script src="/js/init.js"></script>
+<script src="/js/cookies.js"></script>
+<div th:if="${curator.user.role.getAuthority().equals('ROLE_CURATOR')}">
+    <div th:replace="~{navbarСurator :: copy}"></div>
+</div>
+<div th:if="${curator.user.role.getAuthority().equals('ROLE_ADMIN')}">
+    <div th:replace="~{navbarAdmin :: copy}"></div>
+</div>
+<div class="starter-template">
+
+    <form action="#" th:action="@{kpi}"
+          th:method="GET">
+        <div class="row">
+            <div style="margin-left: 18px" class="col-md-3">
+                <p>Период:
+                    <select id="period" name="period" onchange="formChange()">
+                        <option selected disabled> Выберите период</option>
+                        <option th:selected="${per.id == period.id}"
+                                th:each="per: ${periods}" th:value="${per.id}"
+                                th:text="${per}"></option>
+                    </select>
+                </p>
+
+            </div>
+            <div style="margin-left: 52px" class="col-md-4">
+                <p>Сотрудник:
+                    <select id="employee" name="employee" onchange="formChange()">
+                        <option selected disabled> Выберите сотрудника</option>
+                        <option th:selected="${employee?.id == empl.id}"
+                                th:each="empl: ${employees}" th:value="${empl.id}"
+                                th:text="${empl.fullName}"></option>
+                    </select>
+                </p>
+            </div>
+        </div>
+    </form>
+    <div th:replace="~{notification :: copy}"></div>
+</div>
+<div class="modal fade" id="markModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Оценить выполнение задачи</h4>
+            </div>
+            <div>
+                <div>
+                    <div class="form-group">
+                        <label for="actual">Факт</label>
+                        <input class="valid" id="actual" name="actual">
+                    </div>
+                    <div class="form-group">
+                        <label for="note">Примечание</label>
+                        <textarea class="valid" id="note" name="note"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="left-side">
+                    <button onclick="addMark()" type="button" class="btn btn-info btn-simple" data-dismiss="modal">
+                        Сохранить
+                    </button>
+                </div>
+                <div class="divider"></div>
+                <div class="right-side">
+                    <button onclick="deleteMark()" id="deleteMarkButton" data-dismiss="modal" type="button"
+                            class="btn btn-danger btn-simple">Удалить
+                        оценку
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<table id="table">
+    <thead>
+    <tr>
+        <th>План</th>
+        <th>Факт</th>
+        <th>Вес</th>
+        <th>Показатель</th>
+        <th>Куратор</th>
+        <th>Индекс выполнения</th>
+        <th>Взвешенная оценка</th>
+        <th>Операции</th>
+    </tr>
+    </thead>
+    <tbody>
+    <div th:replace="~{target/tableRaw :: copy}"></div>
+<!--    <div th:replace="~{kpiTemplate :: copy}"></div>-->
+    </tbody>
+</table>
+<div style="margin-top: 10px">
+    <!--    <div th:text="${@periodUtils.isBeforeLocaleDate(period)}" th:hidden="${!@periodUtils.isBeforeLocaleDate(period)}">-->
+    <button id="addButton" class="btn btn-info" style="margin-left: 5px"
+            onclick="addTarget()">Добавить запись
+    </button>
+
+    <!--    </div>-->
+    <button class="btn btn-info" style="margin-left: 10px" onclick="acceptChanges()">Сохранить изменения</button>
+    <!--    <button class="btn btn-success" style="margin-left: 12px" onclick="saveChanges()">Сохранить</button>-->
+</div>
+</div>
+</body>
+<script src="/assets/js/ct-paper-checkbox.js"></script>
+</html>

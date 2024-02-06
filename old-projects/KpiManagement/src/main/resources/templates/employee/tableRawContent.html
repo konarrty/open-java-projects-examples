@@ -1,0 +1,46 @@
+<html th:fragment="copy">
+<div hidden="hidden">
+    <div id="employee" hidden="hidden" th:text="${employee.id}" th:value="${employee.id}"></div>
+    <td>
+        <input style="width: 270px" class="valid" required minlength="3" maxlength="50" name="fullName" th:value="${employee.fullName}">
+        <div class="text-field__message"></div>
+    </td>
+
+    <td><input class="valid" minlength="5" required name="position" th:value="${employee.position}">
+        <div class="text-field__message"></div>
+    </td>
+    <td hidden="hidden">
+        <input hidden="hidden" name="user" th:value="${employee?.user?.id}">
+
+    </td>
+    <td class="centered" th:text="${employee?.user?.invitationCode}"></td>
+    <td class="centered">
+        <div th:if="${employee?.user?.username == null}">
+            <b>Не активирован</b>
+        </div>
+        <div th:text="${employee?.user?.username}" th:unless="${employee?.user?.username == null}">
+        </div>
+
+    </td>
+    <td>
+        <select th:disabled="${employee?.user?.role.name().equals('ROLE_ADMIN')}" class="valid" name="user.role">
+            <option
+                    th:hidden="${role.name().equals('ROLE_ADMIN')}"
+                    th:selected="${employee?.user?.role == role}"
+                    th:each="role: ${roles}" th:value="${role}"
+                    th:text="${role.name}"></option>
+        </select>
+    </td>
+
+    <!--                <td th:text="${employee.kpi}"></td>-->
+
+    <td>
+        <div style="display:inline-block">
+            <button th:disabled="${employee?.user?.role.name().equals('ROLE_ADMIN')}" class="btn btn-danger"
+                    th:data-id="${employee.id}" onclick="deleteEmployee(this)" type="button">Удалить
+            </button>
+        </div>
+    </td>
+</html>
+
+

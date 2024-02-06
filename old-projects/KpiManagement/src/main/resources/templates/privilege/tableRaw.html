@@ -1,0 +1,10 @@
+<tr xmlns:sec="http://www.thymeleaf.org/extras/spring-security" name="tr" th:data-id="${privilege.id}"
+    th:fragment="copy" th:each="privilege : ${privileges}"
+>
+    <div sec:authorize="hasRole('ADMIN')">
+        <div th:replace="~{privilege/tableRawContent :: copy}"></div>
+    </div>
+    <div xmlns:sec="http://www.thymeleaf.org/extras/spring-security" sec:authorize="hasRole('CURATOR')">
+        <div th:replace="~{privilege/tableRawMyContent.html :: copy}"></div>
+    </div>
+</tr>

@@ -1,0 +1,35 @@
+<html th:fragment="copy">
+<td hidden="hidden"><input th:text="${privilege.id}" name="id" hidden="hidden" th:value="${privilege.id}"></td>
+<td>
+    <select class="valid" name="user">
+        <option
+                th:selected="${privilege?.user?.employee?.id == cur.id}"
+                th:hidden="${privilege?.employee?.id == cur.id}"
+                th:each="cur: ${employees}" th:value="${cur.user.id}"
+                th:text="${cur.fullName}"></option>
+    </select>
+    <div class="text-field__message"></div>
+</td>
+
+<td class="centered">
+
+    <input th:text="${privilege.employee.fullName}" name="employee" hidden="hidden"
+           th:value="${privilege.employee.id}">
+</td>
+<span th:if="${privilege instanceof T(com.example.kpimanagment.model.PrivilegeWrite)}">
+<td>
+    <input required min="0.01" max="1" step="0.01" class="valid" type="number" name="participationRate"
+           th:value="${privilege.participationRate}">
+    <div class="text-field__message"></div>
+</td>
+   </span>
+
+<td>
+    <button class="btn btn-danger" id="button" th:data-id="${privilege.id}" onclick="deletePrivilege(this)"
+            type="button">Удалить
+    </button>
+
+</td>
+</html>
+
+

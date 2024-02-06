@@ -1,0 +1,53 @@
+<tr th:each="report: ${kpiReports}">
+    <td class="centered" th:text="${report.target.plan}">
+    <td class="centered">
+        <div style="width: 100px" th:text="${#objects.nullSafe(report?.target?.mark?.actual, 'Не оценено')}"></div>
+    </td>
+    <td class="centered" th:text="${report.target.weight}">
+    <td class="centered">
+        <div style="width: 300px" th:text="${report.target.indicator.name}"></div>
+
+    </td>
+    <td class="centered">
+
+        <div th:text="${report.target.period}"></div>
+    </td>
+    <td class="centered">
+
+        <div th:text="${report.target.employee.fullName}"></div>
+    </td>
+    <td class="centered">
+        <div style="width: 240px" th:text="${report.target.curator.fullName}"></div>
+    </td>
+    <td class="centered" th:text="${report.executionIndex}">
+    <td class="centered">
+        <div th:text="${report.weightFactor}"></div>
+    </td>
+    <td>
+        <button onclick="onLoadModal(this)" data-toggle="modal" data-target="#noteModal"
+                type="button" class="btn  btn-link btn-info">
+            <svg xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 448 512">
+                <style>svg {
+                    fill: #2beec7
+                }</style>
+                <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/>
+            </svg>
+        </button>
+    </td>
+    <td hidden="hidden" class="centered">
+        <div id="note" th:text="${report.target?.mark?.note}"></div>
+    </td>
+</tr>
+<tr style="background-color: #dedddd">
+    <td>
+    <td>
+    <td>
+    <td>
+    <td>
+    <td>
+    <td>
+    <td>
+    <td style="font-weight: bold" th:text="'Kpi: '+${kpi}">
+    <td>
+
+</tr>

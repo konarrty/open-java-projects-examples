@@ -1,0 +1,3 @@
+<tr class="form-group has-feedback" name="tr" th:data-id="${period.id}" th:fragment="copy" th:each="period : ${periods}">
+        <div th:replace="~{period/tableRawContent :: copy}"></div>
+</tr>

@@ -1,0 +1,29 @@
+<tr name="tr" th:fragment="copy">
+    <td hidden="hidden">
+        <div disabled name="employee" hidden="hidden"></div>
+    </td>
+    <td><input style="width: 270px" class="valid" minlength="3" maxlength="50" required name="fullName">
+        <div class="text-field__message"></div>
+    </td>
+    <td><input class="valid" minlength="5" required name="position">
+        <div class="text-field__message"></div>
+    </td>
+    <input hidden="hidden" name="user">
+    <td class="centered">Генерируется автоматически</td>
+    <td></td>
+    <td><select class="valid" required name="user.role">
+        <option disabled selected>Выберите роль</option>
+        <option th:selected="${employee?.user?.role == role}"
+                th:hidden="${role.name().equals('ROLE_ADMIN')}"
+                th:each="role: ${roles}" th:value="${role}"
+                th:text="${role.name}"></option>
+    </select>
+        <div class="text-field__message"></div>
+    </td>
+    <td>
+        <div style="display:inline-block">
+            <button data-id="" class="btn btn-danger" onclick="deleteEmployee(this)" type="button">Удалить
+            </button>
+        </div>
+    </td>
+</tr>

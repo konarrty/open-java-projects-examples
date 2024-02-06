@@ -1,0 +1,12 @@
+<html th:fragment="copy">
+<td ><input hidden="hidden" name="id" th:value="${indicator.id}" th:text="${indicator.id}"></td>
+<td ><input style="width: 45%" class="valid" required name="name" th:value="${indicator.name}">
+    <div class="text-field__message"></div>
+</td>
+<!--<td>-->
+<!--    <button class="btn btn-danger" th:data-id="${indicator.id}" onclick="deleteIndicator(this)" type="button">Удалить-->
+<!--    </button>-->
+<!--</td>-->
+</html>
+
+

@@ -1,0 +1,36 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Показатели</title>
+    <link rel="stylesheet" href="/assets/css/custom-table.css">
+    <link rel="stylesheet" href="/assets/css/custom-inputs.css">
+
+</head>
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src="/js/indicator/show.js"></script>
+<script src="/js/init.js"></script>
+<script src="/js/errors.js"></script>
+<div th:replace="~{navbarAdmin :: copy}"></div>
+<div class="starter-template">
+    <div th:replace="~{notification :: copy}"></div>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Название</th>
+        </tr>
+        </thead>
+        <tbody>
+        <div th:replace="~{indicator/tableRaw :: copy}"></div>
+
+        </tbody>
+
+
+    </table>
+    <button class="btn btn-info" style="margin-left: 5px" onclick="addIndicator()">Добавить запись</button>
+    <button class="btn btn-info" onclick="save()" style="margin-left: 5px">Сохранить изменения</button>
+</div>
+</body>
+</html>

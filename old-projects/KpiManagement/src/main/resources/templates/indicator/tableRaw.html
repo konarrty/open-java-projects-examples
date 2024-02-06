@@ -1,0 +1,3 @@
+<tr name="tr" th:data-id="${indicator.id}" th:fragment="copy" th:each="indicator : ${indicators}">
+        <div th:replace="~{indicator/tableRawContent :: copy}"></div>
+</tr>

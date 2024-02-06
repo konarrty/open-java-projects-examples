@@ -1,0 +1,38 @@
+<html th:fragment="copy">
+<tr th:each="report: ${targets}">
+    <td><input hidden="hidden" th:text="${report.target.id}" name="target" th:value="${report.target.id}">
+    </td>
+    <td><input required min="0.1" class="valid" name="plan" th:value="${report.target.plan}"></td>
+    <td th:text="${#objects.nullSafe(report?.target?.mark?.actual, 'Not marked')}">
+    <td><input required min="0" max="1" step="0.1" class="valid" name="weight" th:value="${report.target.weight}"></td>
+    <td>
+        <select class="valid" name="indicator">
+            <option th:selected="${indicator.id == report?.target?.indicator?.id}"
+                    th:each="indicator: ${indicators}" th:value="${indicator.id}"
+                    th:text="${indicator.name}"></option>
+        </select>
+    <td><input name="period" hidden="hidden" th:text="${report.target.period}"
+               th:value="${report.target.period.id}"></td>
+    <td><input name="employee" hidden="hidden" th:text="${report.target.employee.fullName}"
+               th:value="${report.target.employee.id}"></td>
+    <td th:text="${report?.target?.mark?.note}">
+    <td th:text="${report.executionIndex}">
+    <td th:text="${report.weightFactor}">
+    <td>
+        <button th:data-id="${report.target.id}" onclick="deleteTarget(this)" type="button">Delete</button>
+    </td>
+</tr>
+<tr>
+    <td>
+    <td>
+    <td>
+    <td>
+    <td>
+    <td>
+    <td>
+    <td>
+    <td>
+    <td th:text="${kpi}">
+</tr>
+
+</html>
