@@ -6,7 +6,6 @@ import org.springframework.data.util.Pair;
 
 @NoArgsConstructor
 public abstract class RegressionModel {
-
     public abstract ComputedModel compute(Pair<double[], double[]> pair);
 
 }

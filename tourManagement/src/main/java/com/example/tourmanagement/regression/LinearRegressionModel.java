@@ -16,7 +16,6 @@ public class LinearRegressionModel extends RegressionModel {
         super();
     }
 
-
     @Override
     public ComputedModel compute(Pair<double[], double[]> pair) {
 
