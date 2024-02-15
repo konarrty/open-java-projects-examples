@@ -9,6 +9,7 @@ import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.lang.NonNull;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class RestTemplateHeaderModifierInterceptor
         implements ClientHttpRequestInterceptor {
@@ -21,7 +22,12 @@ public class RestTemplateHeaderModifierInterceptor
             ClientHttpRequestExecution execution) throws IOException {
 
         ClientHttpResponse response = execution.execute(request, body);
-        response.getHeaders().setContentType(MediaType.APPLICATION_JSON);
+        if (Objects.requireNonNull(response.getHeaders()
+                        .getFirst("Content-Type"))
+                .split(";")[0]
+                .equals("draft-sdmx-json"))
+            response.getHeaders().setContentType(MediaType.APPLICATION_JSON);
+
         return response;
     }
 

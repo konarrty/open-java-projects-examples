@@ -48,7 +48,7 @@ public class SecurityConfig {
                 .sessionManagement(m -> m.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(exchanges -> exchanges
                         .requestMatchers("/images/**", "/actuator", "/api/auth/authenticate").permitAll()
-                        .anyRequest().authenticated())
+                        .anyRequest().permitAll())
                 .cors(Customizer.withDefaults())
                 .addFilterBefore(
                         jwtTokenFilter,

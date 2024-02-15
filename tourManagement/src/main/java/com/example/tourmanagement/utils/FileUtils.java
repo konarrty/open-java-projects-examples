@@ -16,11 +16,11 @@ import java.util.UUID;
 @Component
 public class FileUtils {
 
-    private static String mainDirectory;
+    private String mainDirectory;
 
     @Value("${image.directory}")
     public void setMainDirectory(String mainDirectory) {
-        FileUtils.mainDirectory = mainDirectory;
+        this.mainDirectory = mainDirectory;
     }
 
     public void saveImage(MultipartFile image, String directory, Long id) {

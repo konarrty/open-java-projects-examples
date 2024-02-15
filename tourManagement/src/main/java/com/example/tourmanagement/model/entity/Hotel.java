@@ -1,5 +1,7 @@
 package com.example.tourmanagement.model.entity;
 
+import com.example.tourmanagement.model.entity.base.IdHolder;
+import com.example.tourmanagement.model.entity.base.ImagesSetter;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
@@ -14,7 +16,7 @@ import java.util.Objects;
 @Table(name = "hotels")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Hotel {
+public class Hotel implements IdHolder, ImagesSetter {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,7 +35,7 @@ public class Hotel {
     private Integer stars;
 
     @Transient
-    private List<String> imageURL;
+    private List<String> images;
 
     @ManyToOne
     private TourOperator operator;
@@ -45,9 +47,6 @@ public class Hotel {
     @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL)
     @ToString.Exclude
     private List<Speciality> specialities = new ArrayList<>();
-
-    @PostLoad
-    public void postLoad(){}
 
     public Hotel(Long id) {
         this.id = id;

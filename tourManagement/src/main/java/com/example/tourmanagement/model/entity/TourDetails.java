@@ -2,6 +2,8 @@ package com.example.tourmanagement.model.entity;
 
 import com.example.tourmanagement.enums.NutritionType;
 import com.example.tourmanagement.enums.RestType;
+import com.example.tourmanagement.model.entity.base.IdHolder;
+import com.example.tourmanagement.model.entity.base.ImagesSetter;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.Formula;
@@ -21,7 +23,7 @@ import static com.example.tourmanagement.repository.tour.TourDetailsRepository.S
 @Table(name = "tour_details")
 @AllArgsConstructor
 @NoArgsConstructor
-public class TourDetails {
+public class TourDetails implements IdHolder, ImagesSetter {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

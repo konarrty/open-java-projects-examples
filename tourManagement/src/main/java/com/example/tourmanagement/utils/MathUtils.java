@@ -32,8 +32,8 @@ public class MathUtils {
 
         double sumOfSquaredDeviations = 0;
 
-        for (int i = 0; i < data.length; i++) {
-            sumOfSquaredDeviations += Math.pow(data[i] - mean, 2);
+        for (double datum : data) {
+            sumOfSquaredDeviations += Math.pow(datum - mean, 2);
         }
 
         return sumOfSquaredDeviations / (data.length - 1);

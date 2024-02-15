@@ -1,11 +1,14 @@
 package com.example.tourmanagement.model.entity;
 
 import com.example.tourmanagement.enums.ERole;
+import com.example.tourmanagement.model.entity.base.IdHolder;
+import com.example.tourmanagement.model.entity.base.ImagesSetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
 
+import java.util.List;
 import java.util.Objects;
 
 @Getter
@@ -14,7 +17,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements IdHolder, ImagesSetter {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -54,9 +57,6 @@ public class User {
     @Transient
     private String image;
 
-    @PostLoad
-    public void postLoad(){}
-
     public User(String username, String password) {
         this.username = username;
         this.password = password;
@@ -76,5 +76,11 @@ public class User {
     @Override
     public final int hashCode() {
         return this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass().hashCode() : getClass().hashCode();
+    }
+
+    @Override
+    public void setImages(List<String> images) {
+
+        setImage(images != null ? images.get(0) : null);
     }
 }
