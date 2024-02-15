@@ -37,18 +37,18 @@ public interface ReservationRepository extends JpaRepository<Reservation, Reserv
                    insert into bonuses(month, year, agent_id, grid_award_id)
             select extract(month from now()),
                    extract(year from now()),
-                   sum.a.id          as agent_id,
+                   reservation_sum.agent.id          as agent_id,
                    grid_awards.id as grid_award_id
             from grid_awards,
-                 (SELECT a , SUM(td.price) as sum
+                 (SELECT agent , SUM(td.price) as sum
                   FROM reservations r
                            join public.tours t on t.id = r.tour_id
-                           join public.agents a on a.id = r.agent_id
+                           join public.agents agent on agent.id = r.agent_id
                            join tour_details td on t.details_id = td.id
                   WHERE r.created_date_time > :dateTime
-                  GROUP BY a) as sum
+                  GROUP BY agent) as reservation_sum
             where factor = (select max(factor) from grid_awards g 
-            where g.volume <= sum.sum and a.operator_id = g.tour_operator_id)
+            where g.volume <= reservation_sum.sum and agent.operator_id = g.tour_operator_id)
                    """, nativeQuery = true)
     void createBonusesAccordingTheGrid(LocalDateTime dateTime);
 
