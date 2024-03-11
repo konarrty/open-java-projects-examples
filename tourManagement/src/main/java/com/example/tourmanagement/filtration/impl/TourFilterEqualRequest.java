@@ -20,7 +20,11 @@ public class TourFilterEqualRequest implements TourFilter {
 
     private String field;
     private List<Object> value = new ArrayList<>();
-    private String operation;
+
+    @Override
+    public String getOperation() {
+        return "equal";
+    }
 
     @Override
     public Predicate addPredicate(CriteriaBuilder builder, Path<?> path) {

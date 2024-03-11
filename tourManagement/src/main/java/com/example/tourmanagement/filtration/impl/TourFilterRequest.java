@@ -16,7 +16,7 @@ import java.lang.reflect.Method;
 import java.util.Optional;
 
 
-@Component
+//@Component
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -25,6 +25,11 @@ public class TourFilterRequest implements TourFilter {
     private String field;
     private String value;
     private String operation;
+
+    @Override
+    public String getOperation() {
+        return operation;
+    }
 
     @Override
     public Predicate addPredicate(CriteriaBuilder builder, Path<?> path) {

@@ -3,11 +3,13 @@ package com.example.tourmanagement.repository.regression;
 import com.example.tourmanagement.dto.stat.ReservationByAgentAndMonthDTO;
 import com.example.tourmanagement.dto.stat.ReservationByAgentDTO;
 import com.example.tourmanagement.enums.ReservationStatus;
-import com.example.tourmanagement.model.entity.Reservation;
-import com.example.tourmanagement.model.entity.ReservationId;
+import com.example.tourmanagement.model.entity.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
+import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;
+import org.springframework.data.querydsl.binding.QuerydslBindings;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,8 +17,15 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
-public interface ReservationRepository extends JpaRepository<Reservation, ReservationId> {
+public interface ReservationRepository extends JpaRepository<Reservation, ReservationId>
+        , QuerydslPredicateExecutor<Reservation>
+        , QuerydslBinderCustomizer<QReservation> {
 
+    @Override
+    default void customize(QuerydslBindings bindings, QReservation root) {
+
+        bindings.excluding(root.client);
+    }
     Iterable<Reservation> findAllByClientId(Long clientId);
 
     Iterable<Reservation> findAllByTourId(Long tourId);

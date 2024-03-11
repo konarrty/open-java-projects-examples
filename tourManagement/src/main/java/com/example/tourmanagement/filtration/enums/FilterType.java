@@ -1,2 +1,9 @@
-package com.example.tourmanagement.filtration;public class FilterType {
+package com.example.tourmanagement.filtration.enums;
+
+public enum FilterType {
+
+    EQUAL,
+    BETWEEN,
+    DEFAULT
+
 }

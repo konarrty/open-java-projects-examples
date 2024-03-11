@@ -30,12 +30,17 @@ public class TourFilterBetweenRequest implements TourFilter {
     private String field;
     private Object value;
     private Object value2;
-    private String operation;
+    private Object operation;
+
+    @Override
+    public String getOperation() {
+        return "between";
+    }
 
     @Override
     public Predicate addPredicate(CriteriaBuilder builder, Path<?> path) {
 
-        Method method = ReflectionUtils.findMethod(builder.getClass(), operation, Expression.class, Comparable.class, Comparable.class);
+        Method method = ReflectionUtils.findMethod(builder.getClass(), getOperation(), Expression.class, Comparable.class, Comparable.class);
 
         return (Predicate) Optional.ofNullable(method)
                 .map(m -> ReflectionUtils.invokeMethod(method, builder, path,

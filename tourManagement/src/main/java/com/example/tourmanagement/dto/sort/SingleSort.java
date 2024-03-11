@@ -17,6 +17,6 @@ public class SingleSort {
 
     public Sort toSpringSort() {
 
-        return Sort.by(direction, property);
+        return property != null && direction != null ? Sort.by(direction, property) : Sort.unsorted();
     }
 }

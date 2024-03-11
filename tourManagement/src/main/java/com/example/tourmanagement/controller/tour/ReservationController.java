@@ -24,8 +24,9 @@ public class ReservationController {
 
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/{clientId}/approval")
-    public ReservationResponse approveReservation(@PathVariable Long tourId,
-                                                  @PathVariable Long clientId) {
+    public ReservationResponse approveReservation(
+            @PathVariable Long tourId,
+            @PathVariable Long clientId) {
 
         return reservationsService.approveReservation(
                 new ReservationId(clientId, tourId)
@@ -34,12 +35,10 @@ public class ReservationController {
 
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/payment")
-    public ReservationResponse payReservation(@PathVariable Long tourId,
-                                              @RequestParam
-                                              @CreditCardNumber(
-                                                      ignoreNonDigitCharacters = true,
-                                                      message = "Неверный номер карты.")
-                                              String number) {
+    public ReservationResponse payReservation(
+            @PathVariable Long tourId,
+            @RequestParam
+            @CreditCardNumber(ignoreNonDigitCharacters = true, message = "Неверный номер карты.") String number) {
 
         log.info("Карта с номером " + number + " прошла валидацию");
 
@@ -52,8 +51,7 @@ public class ReservationController {
 
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/{clientId}/cancellation")
-    public ReservationResponse rejectReservation(@PathVariable Long tourId,
-                                                 @PathVariable Long clientId) {
+    public ReservationResponse rejectReservation(@PathVariable Long tourId, @PathVariable Long clientId) {
 
         return reservationsService.rejectReservation(
                 new ReservationId(clientId, tourId)

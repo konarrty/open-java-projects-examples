@@ -1,17 +1,22 @@
 package com.example.tourmanagement.controller.tour;
 
-import com.example.tourmanagement.filtration.impl.TourFiltersWithSortRequest;
 import com.example.tourmanagement.dto.request.TourRequest;
 import com.example.tourmanagement.dto.response.ReservationResponse;
 import com.example.tourmanagement.dto.response.TourDetailsResponse;
 import com.example.tourmanagement.dto.response.TourWithDetailsResponse;
 import com.example.tourmanagement.dto.stat.ReservationByAgentAndMonthResultDTO;
 import com.example.tourmanagement.enums.ReservationStatus;
+import com.example.tourmanagement.filtration.impl.TourFiltersWithSortRequest;
+import com.example.tourmanagement.mapper.tour.TourMapper;
+import com.example.tourmanagement.model.entity.Tour;
+import com.example.tourmanagement.repository.tour.TourRepository;
 import com.example.tourmanagement.service.tour.ReservationService;
 import com.example.tourmanagement.service.tour.TourService;
 import com.example.tourmanagement.utils.ClientContextUtils;
+import com.querydsl.core.types.Predicate;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +29,8 @@ public class TourController {
 
     private final TourService toursService;
     private final ReservationService reservationService;
+    private final TourRepository userRepository;
+    private final TourMapper tourMapper;
 
     @GetMapping
     public ResponseEntity<?> getAllTours(@RequestParam(required = false, defaultValue = "id") String sort,
@@ -47,11 +54,22 @@ public class TourController {
 
     @PostMapping("/filter")
     public ResponseEntity<?> filterTours(@RequestBody TourFiltersWithSortRequest request) {
+
         Iterable<TourDetailsResponse> toursList = toursService.getAllTours(request);
         if (toursList.iterator().hasNext())
             return ResponseEntity.ok(toursList);
         else
             return ResponseEntity.notFound().build();
+    }
+
+    @GetMapping("/filter")
+    public ResponseEntity<?> filterTours(@QuerydslPredicate(root = Tour.class)
+                                         Predicate predicate) {
+        return ResponseEntity.ok(
+                tourMapper.toResponseWithDetails(
+                        userRepository.findAll(predicate)
+                )
+        );
     }
 
     @ResponseStatus(HttpStatus.CREATED)

@@ -15,6 +15,6 @@ import java.util.List;
 public class TourFiltersWithSortRequest {
 
     private List<TourFilter> filters;
-    private SingleSort sort;
+    private SingleSort sort = new SingleSort();
 
 }
