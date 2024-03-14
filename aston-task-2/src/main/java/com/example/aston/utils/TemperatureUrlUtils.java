@@ -1,6 +1,6 @@
 package com.example.aston.utils;
 
-import com.example.aston.enums.Country;
+import com.example.aston.model.Country;
 
 import java.net.URI;
 

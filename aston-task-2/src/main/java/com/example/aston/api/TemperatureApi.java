@@ -3,7 +3,7 @@ package com.example.aston.api;
 import com.example.aston.config.SimpleHttpClient;
 import com.example.aston.config.SimpleObjectMapper;
 import com.example.aston.dto.TemperatureDTO;
-import com.example.aston.enums.Country;
+import com.example.aston.model.Country;
 import com.example.aston.utils.TemperatureUrlUtils;
 
 import java.net.URI;
