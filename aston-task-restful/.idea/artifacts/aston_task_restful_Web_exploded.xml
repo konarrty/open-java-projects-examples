@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="aston-task-restful:Web exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/aston_task_restful_Web_exploded</output-path>
+    <root id="archive" name="aston-task-restful_Web exploded.jar">
+      <element id="javaee-facet-resources" facet="aston-task-restful/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="aston-task-restful" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
