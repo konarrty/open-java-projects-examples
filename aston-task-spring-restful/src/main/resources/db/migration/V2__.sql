@@ -1,0 +1,2 @@
+INSERT INTO countries(NAME, LATITUDE, LONGITUDE)
+VALUES ('Австрия', 53.12, 13.49);
